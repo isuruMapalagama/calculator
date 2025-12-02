@@ -11,10 +11,10 @@ public class Calculator {
     int boardWidth = 360;
     int boardHeight = 540;
 
-    Color CustomNavyBlue = new Color(12, 19, 79);
-    Color CustomLightBlue = new Color(29, 38, 125);
-    Color CustomPurple = new Color(92, 70, 156);
-    Color CustomLightPurple = new Color(212, 173, 252);
+    Color CustomBeige = new Color(250, 243, 225);
+    Color CustomLightGold = new Color(245, 231, 198);
+    Color CustomOrange = new Color(255, 109, 31);
+    Color CustomBlack = new Color(34, 34, 34);
 
 
     String[] buttonValues ={
@@ -22,7 +22,7 @@ public class Calculator {
         "7", "8", "9", "×",
         "4", "5", "6", "-",
         "1", "2", "3", "+",
-        "0", ".", "√", "="
+        "0", ".", "√", "=",
     };
     String[] rightSymbols = {"÷", "×", "-", "+", "="};
     String[] topSymbols = {"AC", "+/-", "%"};
@@ -40,8 +40,8 @@ public class Calculator {
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
-
-        displayLabel.setBackground(CustomNavyBlue);
+ 
+        displayLabel.setBackground(CustomBlack);
         displayLabel.setForeground(Color.white);
         displayLabel.setFont(new Font("Arial",Font.PLAIN, 80));
         displayLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -53,7 +53,7 @@ public class Calculator {
         frame.add(displayPanel, BorderLayout.NORTH);
 
         buttonsPanel.setLayout(new GridLayout(5,4));
-        buttonsPanel.setBackground(CustomLightBlue);
+        buttonsPanel.setBackground(CustomLightGold);
         frame.add(buttonsPanel);
 
         for (int i =0; i<buttonValues.length; i++){
@@ -62,7 +62,22 @@ public class Calculator {
             button.setFont(new Font("Arial", Font.PLAIN, 30));
             button.setText(buttonValue);
             button.setFocusable(false);
+            button.setBorder(new LineBorder(CustomLightGold));
+            if(Arrays.asList(topSymbols).contains(buttonValue)){
+                button.setBackground(CustomBeige);
+                button.setForeground(Color.BLACK);
+            }
+            else if(Arrays.asList(rightSymbols).contains(buttonValue)){
+                button.setBackground(CustomOrange);
+                button.setForeground(Color.white);
+            }
+            else{
+                button.setBackground(CustomLightGold);
+                button.setForeground(Color.BLACK);
+            }
             buttonsPanel.add(button);
+
+            
 
         }
     }
