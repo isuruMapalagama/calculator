@@ -33,6 +33,10 @@ public class Calculator {
     JPanel displayPanel = new JPanel();
     JPanel buttonsPanel = new JPanel();
 
+    String A = "0";
+    String oprator = null;
+    String B = null;
+
     Calculator(){
         frame.setVisible(true);
         frame.setSize(boardWidth,boardHeight);
@@ -77,9 +81,47 @@ public class Calculator {
             }
             buttonsPanel.add(button);
 
-            
+           
+            button.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    JButton button = (JButton) e.getSource();
+                    String buttonValue = button.getText();
+                    if (Arrays.asList(rightSymbols).contains(buttonValue)){
+
+                    }
+                    else if (Arrays.asList(topSymbols).contains(buttonValue)) {
+                        if (buttonValue == "AC"){
+                            clearAll();
+                            displayLabel.setText("0");
+                        }
+
+                    }
+                    else {
+                        if (buttonValue == ".") {
+                            if (!displayLabel.getText().contains(buttonValue)){
+                                displayLabel.setText(displayLabel.getText() + buttonValue);
+                            }
+                        }
+                        else if("0123456789".contains(buttonValue)){
+                            if (displayLabel.getText()=="0") {
+                                displayLabel.setText(buttonValue);
+                            }
+                            else{
+                                displayLabel.setText(displayLabel.getText() + buttonValue );
+                            }
+                        }
+                    }
+                }
+            });
 
         }
+
+        }
+
+        void clearAll(){
+            A="0";
+            oprator = null;
+            B = null;
     }
 
     
